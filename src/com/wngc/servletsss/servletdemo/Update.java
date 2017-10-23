@@ -1,7 +1,7 @@
-package servletsss.servletDemo;
+package com.wngc.servletsss.servletdemo;
 
-import servletsss.Dao.operateDao;
-import servletsss.model.Manager;
+import com.wngc.servletsss.dao.OperateDao;
+import com.wngc.servletsss.model.Manager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,17 +13,20 @@ import java.io.IOException;
 /**
  * Created by jing on 2017/10/9.
  */
-@WebServlet(name = "add")
-public class add extends HttpServlet {
+@WebServlet(name = "Update")
+public class Update extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String managerName=request.getParameter("managername");
-        String managerPsw=request.getParameter("password");
-        operateDao dao=new operateDao();
-        Manager manager=new Manager();
+        int managerid=Integer.parseInt(request.getParameter("managerid"));
+        String managerpsw=request.getParameter("password");
 
+        Manager manager=new Manager();
+        manager.setManager_id(managerid);
         manager.setManager_name(managerName);
-        manager.setPassword(managerPsw);
-        dao.addDate(manager);
+        manager.setPassword(managerpsw);
+
+        OperateDao dao=new OperateDao();
+        dao.updateDate(manager);
 
         response.sendRedirect("success.jsp");
     }

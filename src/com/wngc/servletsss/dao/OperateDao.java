@@ -1,8 +1,9 @@
-package servletsss.Dao;
+package com.wngc.servletsss.dao;
 
-import servletsss.model.Manager;
+import com.wngc.servletsss.model.Manager;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
@@ -10,35 +11,39 @@ import java.util.*;
 /**
  * Created by jing on 2017/9/29.
  */
-public class operateDao {
-    servletsss.Dao.driverClass driverClass=new servletsss.Dao.driverClass();
+public class OperateDao {
+    DriverClass DriverClass =new DriverClass();
     Connection connection=null;
     Statement st=null;
 
     public void addDate(Manager manager){
-        String sql="insert into manager(manager_name,password) values(manager.manager_name,manager.;password)";
+        String sql="insert into manager values(?,?,?)";
+        PreparedStatement ps=null;
         try{
-            connection=driverClass.getConnect();
-            st=connection.createStatement();
+            connection= DriverClass.getConnect();
+            ps=connection.prepareStatement(sql);
+            ps.setInt(1,manager.getManager_id());
+            ps.setString(2,manager.getManager_name());
+            ps.setString(3,manager.getPassword());
             int i=st.executeUpdate(sql);
-            driverClass.closeConnect();
+            DriverClass.closeConnect();
         }catch(Exception E){}
     }
 
-    public void deletDate(int managerId){
+    public void deleteDate(int managerId){
         String sql="delete from manager where manager_id='managerId'";
         try{
-            connection=driverClass.getConnect();
+            connection= DriverClass.getConnect();
             st=connection.createStatement();
             st.executeUpdate(sql);
-            driverClass.closeConnect();
+            DriverClass.closeConnect();
         }catch(Exception E){}
     }
 
     public void updateDate(Manager manager){
         String sql="update manager set manager_name='manager.manager_name',password='manager.password' where manager_id='manager.manager_id";
         try{
-            connection=driverClass.getConnect();
+            connection= DriverClass.getConnect();
             st=connection.createStatement();
             st.executeUpdate(sql);
         }catch(Exception E){}
@@ -48,7 +53,7 @@ public class operateDao {
     public List<Manager> queryDate() throws Exception{
         String sql="select * from manager";
 
-        connection=driverClass.getConnect();
+        connection= DriverClass.getConnect();
         st=connection.createStatement();
         ResultSet rs=st.executeQuery(sql);
         List<Manager> managers=new ArrayList<Manager>();
@@ -62,7 +67,7 @@ public class operateDao {
             manager.setPassword(psw);
             managers.add(manager);
         }
-        driverClass.closeConnect();
+        DriverClass.closeConnect();
         return managers;
     }
 }

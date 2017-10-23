@@ -1,4 +1,4 @@
-package servletsss.model;
+package com.wngc.servletsss.model;
 
 /**
  * Created by jing on 2017/9/29.

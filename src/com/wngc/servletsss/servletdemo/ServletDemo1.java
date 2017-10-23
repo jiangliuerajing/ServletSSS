@@ -1,4 +1,4 @@
-package servletsss.servletDemo;
+package com.wngc.servletsss.servletdemo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package servletsss.Dao;
+package com.wngc.servletsss.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /**
  * Created by jing on 2017/9/29.
  */
-public class driverClass {
+public class DriverClass {
     public static final String url="jdbc:mysql://localhost/manager";
     public static final String driverName="com.mysql.jdbc.Driver";
     public static final String user="root";

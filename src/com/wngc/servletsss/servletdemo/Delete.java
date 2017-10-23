@@ -1,6 +1,6 @@
-package servletsss.servletDemo;
+package com.wngc.servletsss.servletdemo;
 
-import servletsss.Dao.operateDao;
+import com.wngc.servletsss.dao.OperateDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +12,13 @@ import java.io.IOException;
 /**
  * Created by jing on 2017/10/9.
  */
-@WebServlet(name = "delete")
-public class delete extends HttpServlet {
+@WebServlet(name = "Delete")
+public class Delete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int mamnagerid=Integer.parseInt(request.getParameter("managerid"));
-        operateDao dao=new operateDao();
+        OperateDao dao=new OperateDao();
 
-        dao.deletDate(mamnagerid);
+        dao.deleteDate(mamnagerid);
         response.sendRedirect("success.jsp");
     }
 
